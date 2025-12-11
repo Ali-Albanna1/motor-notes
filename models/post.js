@@ -1,4 +1,3 @@
-const { text } = require('express');
 const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
@@ -27,7 +26,8 @@ const commentSchema = mongoose.Schema({
 const postSchema = mongoose.Schema({
 
 title : {
-
+   type: String,
+    required:true, 
 },
 content: {
     type: String,
@@ -54,7 +54,7 @@ year :{
     required:true, 
 },
 
-comment:[commentSchema],
+comments:[commentSchema],
 
 },
 
@@ -66,7 +66,7 @@ comment:[commentSchema],
 
 
 // then we register the model with mongoose
-const User = mongoose.model('Post', postSchema);
+const Post = mongoose.model('Post', postSchema);
 
 // export the model
 module.exports = Post;
