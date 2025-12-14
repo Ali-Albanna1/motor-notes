@@ -10,7 +10,7 @@ const commentSchema = mongoose.Schema({
     text: {
 
     type : String,
-    required:true,
+   
 
     }, 
 
@@ -27,7 +27,7 @@ const postSchema = mongoose.Schema({
 
 title : {
    type: String,
-    required:true, 
+   required:true,   
 },
 content: {
     type: String,
