@@ -13,7 +13,14 @@
    
   <ul>
     <% posts.forEach((post)=>  { %>
-    <li> <%= post.title %></li>
+
+    <li>
+       <%= post.title %>
+
+        <a href="/posts/<%= post._id %>"> More Details </a>
+    
+    </li>
+
     <%  }) %>
   </ul>
 

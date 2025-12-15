@@ -53,6 +53,27 @@ router.post('/', async (req,res) =>{
     }
 })
 
+//show
+router.get('/:id', async (req,res) => {
+
+    try{
+        const post = await Post.findById(req.params.id).populate('author')
+
+        res.render('posts/show.ejs', {post})
+    }
+
+    catch(err){
+        console.error(err);
+        res.redirect('/');
+    }
+});
+
+// Update
+
+
+//Delete
+
+
 
 
 module.exports = router;
