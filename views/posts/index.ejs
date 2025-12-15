@@ -15,9 +15,8 @@
     <% posts.forEach((post)=>  { %>
 
     <li>
-       <%= post.title %>
-
-        <a href="/posts/<%= post._id %>"> More Details </a>
+    
+        <a href="/posts/<%= post._id %>"> <%= post.title %> </a>
     
     </li>
 
