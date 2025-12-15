@@ -19,6 +19,19 @@
 
     <p>Year: <%= post.year %></p>
 
+    <h2> Author: <%= post.author.username %></h2>
+
+    <% if(post.author._id.equals(user._id)) {%>
+
+        <form action="/posts/<%= post._id %>/?_method=DELETE" method="post">
+
+            <button type="submit">Delete</button>
+
+        </form>
+
+        <a href="/posts/<%= post._id %>/edit"> Edit</a>
+
+    <% } %>    
     
 </body>
 </html>

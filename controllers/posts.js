@@ -68,12 +68,88 @@ router.get('/:id', async (req,res) => {
     }
 });
 
-// Update
+// Edit/ Update
+
+router.get('/:id/edit', async (req,res)=>{
+
+    try{
+
+        const post = await Post.findById(req.params.id)
+
+        res.render('posts/edit.ejs',{post})
+    }
+
+    catch(err){
+       
+        console.error(err)
+    }
+
+})
+
+router.put('/:id', async (req,res)=>{
+
+    try{
+        
+        const post = await Post.findById(req.params.id)
+
+        isAuthor = post.author.equals(req.session.user._id)
+
+        if(isAuthor){
+                
+            await post.updateOne(req.body)
+
+            res.redirect(`/posts/${req.params.id}`)
+
+        }
+
+        else{
+
+              res.redirect(`/posts/${req.params.id}`)
+
+
+        }
+
+    }
+
+    catch(err){
+         res.redirect('')
+         console.error(err)
+    }
+
+})
 
 
 //Delete
 
+router.delete('/:id', async (req,res) =>{
 
+
+    try{
+        
+        const post = await Post.findById(req.params.id)
+        
+        isAuthor = post.author.equals(req.session.user._id)
+
+        if(isAuthor){
+
+             await post.deleteOne(req.body)
+
+             res.redirect('/posts')
+        }
+        else{
+               
+            throw new Error(`permission denied to ${req.session.user.username}`)
+
+        }
+
+    }
+
+     catch(err){
+         res.redirect('')
+         console.error(err)
+    }
+
+})
 
 
 module.exports = router;
