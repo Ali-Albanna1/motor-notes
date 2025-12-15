@@ -57,7 +57,8 @@ router.post('/', async (req,res) =>{
 router.get('/:id', async (req,res) => {
 
     try{
-        const post = await Post.findById(req.params.id).populate('author')
+        console.log("SHOW ROUTES")
+        const post = await Post.findById(req.params.id).populate('comments.author')
 
         res.render('posts/show.ejs', {post})
     }
@@ -118,6 +119,39 @@ router.put('/:id', async (req,res)=>{
 
 })
 
+//comments add
+
+router.post('/:id/comments', async (req,res)=>{
+
+     try{ 
+        
+    const post = await Post.findById(req.params.id)
+
+    
+    
+    post.comments.push({
+
+        text: req.body.comment,
+        author: req.session.user._id,
+
+    })
+
+    await post.save()
+    
+    res.redirect(`/posts/${req.params.id}`)
+     
+    
+}
+
+catch(err){
+
+    console.error(err)
+
+        res.redirect(`/posts/${req.params.id}`)
+
+}
+   
+})
 
 //Delete
 
