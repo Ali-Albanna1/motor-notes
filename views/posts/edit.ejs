@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Page</title>
+    <%- include('../partials/_header.ejs', { title: "Edit: "+post.title }) %>
 </head>
 <body>
   
     <%- include('../partials/_navbar.ejs') %> 
+
+     <main class="container">
 
     <h1>Edit: <%= post.title %> </h1>
 
@@ -38,6 +38,8 @@
         
 
     </form>
-    
+    </main>
+      <%- include('../partials/_footer.ejs') %>
+
 </body>
 </html>

@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <%- include('./partials/_header.ejs', { title: "MotorNotes Home" }) %>
 </head>
 <body>
   <%- include('./partials/_navbar.ejs') %>
+
+   <main class="container">
+    <h1>MotorNotes</h1>
+    <p>A community platform to share posts and reviews about vehicles across the automotive world — cars.</p>
+
+    <% if (user) { %>
+      <a class="button" href="/posts">Browse Posts</a>
+      <a class="button button-outline" href="/posts/new">Add a Post</a>
+    <% } else { %>
+      <a class="button" href="/auth/sign-in">Sign In</a>
+      <a class="button button-outline" href="/auth/sign-up">Create Account</a>
+    <% } %>
+  </main>
+
+  <%- include('./partials/_footer.ejs') %>
   
 </body>
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= post.title %></title>
+
+    <%- include('../partials/_header.ejs', { title: post.title  }) %>
+
 </head>
 <body>
 
     <%- include('../partials/_navbar.ejs') %> 
-
+    
+     <main class="container">
     <h1>Title: <%= post.title %></h1>
 
     <% if (post.imageurl) { %>
@@ -67,6 +68,10 @@
 
         <button type="submit">Add Comment</button>
     </form>
+    </main>
+
+       <%- include('../partials/_footer.ejs') %>
+
     
 </body>
 </html>
