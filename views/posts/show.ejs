@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title><%= post.title %></title>
 </head>
 <body>
 
@@ -23,7 +23,7 @@
 
     <% if(post.author._id.equals(user._id)) {%>
 
-        <form action="/posts/<%= post._id %>/?_method=DELETE" method="post">
+        <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
 
             <button type="submit">Delete</button>
 
@@ -39,6 +39,17 @@
      <strong>Author: <%= comment.author.username %>:</strong>
 
       <span> <%= comment.text %> </span>
+
+      <% if(comment.author._id.equals(user._id)|| post.author._id.equals(user._id)) {%> 
+           
+         <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="post">
+           
+            <button type="submit">Delete Comment</button>
+
+         </form>
+
+        <% } %>
+
       <br>
       <hr>
         

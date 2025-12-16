@@ -57,8 +57,8 @@ router.post('/', async (req,res) =>{
 router.get('/:id', async (req,res) => {
 
     try{
-        console.log("SHOW ROUTES")
-        const post = await Post.findById(req.params.id).populate('comments.author')
+
+        const post = await Post.findById(req.params.id).populate('comments.author').populate('author')
 
         res.render('posts/show.ejs', {post})
     }
@@ -184,6 +184,51 @@ router.delete('/:id', async (req,res) =>{
     }
 
 })
+
+// comment delete
+router.delete('/:postId/comments/:commentId', async (req,res) => {
+
+
+    try{
+         const post = await Post.findById(req.params.postId)
+
+    const comment = post.comments.id(req.params.commentId)
+    
+    if (!comment) { return res.redirect(`/posts/${req.params.postId}`) }
+
+    
+    const isCommentAuthor = comment.author.equals(req.session.user._id)
+
+    const isPostAutor = post.author.equals(req.session.user._id)
+
+   if (isCommentAuthor||isPostAutor){
+    
+    comment.deleteOne()
+
+    await post.save()
+    }
+   
+
+   else{
+    
+    throw new Error(`permission denied`)
+    
+    
+    
+   }
+   
+   res.redirect(`/posts/${req.params.postId}`)
+
+}  catch(err){
+
+    console.error(err) 
+    
+    res.redirect(`/posts/${req.params.postId}`)
+    }
+
+
+});
+
 
 
 module.exports = router;
