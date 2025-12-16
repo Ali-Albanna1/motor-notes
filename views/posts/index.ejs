@@ -16,6 +16,10 @@
 
     <li>
     
+      <% if (post.imageurl) { %>
+      <img src="<%= post.imageurl %>"alt="<%= post.brand %> <%= post.model %> image" />
+      <% } %>
+      
         <a href="/posts/<%= post._id %>"> <%= post.title %> </a>
     
     </li>

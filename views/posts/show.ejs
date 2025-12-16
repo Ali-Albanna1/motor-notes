@@ -10,7 +10,11 @@
     <%- include('../partials/_navbar.ejs') %> 
 
     <h1>Title: <%= post.title %></h1>
-     
+
+    <% if (post.imageurl) { %>
+  <img src="<%= post.imageurl %>" alt="<%= post.brand %> <%= post.model %> image"/>
+   <% } %>
+
     <p>Content: <%= post.content %></p>
 
     <p>model: <%= post.model %></p>

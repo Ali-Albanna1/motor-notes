@@ -52,14 +52,12 @@ app.get('/', async (req, res) => {
 
 app.use('/auth', authCtrl);
 
-app.use('/posts', postCtrl)
+
 
 // ---------- PROTECTED ROUTES ----------
 app.use(isSignedIn);
 
-app.get('/vip-lounge', async (req, res) => {
-  res.send('VIP PAGE');
-});
+app.use('/posts', postCtrl)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

@@ -29,6 +29,11 @@ title : {
    type: String,
    required:true,   
 },
+
+imageurl: {
+    type: String,
+},
+
 content: {
     type: String,
     required:true, 
