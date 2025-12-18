@@ -146,8 +146,8 @@ https://milligram.io/
    ```
 Create a .env file:
 
-env
-```
+ in .env add 
+```javascript
 MONGODB_URI=your_mongodb_connection_string
 
 SESSION_SECRET=your_secret_key
