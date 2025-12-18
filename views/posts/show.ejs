@@ -13,10 +13,10 @@
     <h1>Title: <%= post.title %></h1>
 
     <% if (post.imageurl) { %>
-  <img src="<%= post.imageurl %>" alt="<%= post.brand %> <%= post.model %> image"/>
+  <img class="post-show-image" src="<%= post.imageurl %>" alt="<%= post.brand %> <%= post.model %> image"/>
    <% } %>
 
-    <p>Content: <%= post.content %></p>
+    <p><%= post.content %></p>
 
     <p>model: <%= post.model %></p>
 
@@ -34,7 +34,7 @@
 
         </form>
 
-        <a href="/posts/<%= post._id %>/edit"> Edit</a>
+        <a class="button button-outline" href="/posts/<%= post._id %>/edit">Edit Post</a>
 
     <% } %>    
 
