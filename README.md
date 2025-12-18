@@ -177,6 +177,8 @@ http://localhost:3000
 
 
 ## Future Improvements
+- sepration of vheicle info from posts to collection (model)
+
 - Image upload instead of image URLs
 
 - Categories for vehicle types
