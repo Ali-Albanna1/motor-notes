@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
+    <%- include('../partials/_header.ejs', { title: "Sign In" }) %>
   </head>
   <body>
-    <h1>Log in</h1>
+    <%- include('../partials/_navbar.ejs') %>
+    <main class="container">
+    <h1>Log In</h1>
     <form action="/auth/sign-in" method="POST">
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" />
@@ -16,5 +16,7 @@
 
       <button type="submit">Sign in</button>
     </form>
+  </main>
+  <%- include('../partials/_footer.ejs') %>
   </body>
 </html>

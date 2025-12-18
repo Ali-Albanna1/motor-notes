@@ -3,11 +3,14 @@
 
   <div class="container-nav-inner">
      
-     <a class="brand" href="/">MotorNotes</a>
+      <a class="brand" href="/">
+      <img src="https://i.imgur.com/E7kbuIw.png" alt="MotoNotes logo" class="logo">
+    </a>
 
 <div class="nav-links">
   
   <% if (user) { %>
+  <span class="nav-user">Hi, <%= user.username %></span>
   <a href="/posts">All Posts</a>
   <a href="/posts/new">Add Post</a>
   <a href="/auth/sign-out">Sign Out</a>

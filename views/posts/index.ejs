@@ -10,20 +10,27 @@
     <main class="container">
   <h1>All Posts</h1>
    
-  <ul>
+  <ul class="posts-list">
     <% posts.forEach((post)=>  { %>
 
     <li>
-    
-      <% if (post.imageurl) { %>
-      <img src="<%= post.imageurl %>"alt="<%= post.brand %> <%= post.model %> image" />
-      <% } %>
-      
-        <a href="/posts/<%= post._id %>"> <%= post.title %> </a>
-    
-    </li>
 
-    <%  }) %>
+     <a href="/posts/<%= post._id %>" class="post-link">
+
+        <% if (post.imageurl) { %>
+          <img
+            src="<%= post.imageurl %>"
+            alt="<%= post.brand %> <%= post.model %> image"
+          />
+        <% } %>
+
+        <span class="post-title"><%= post.title %></span>
+
+      </a>
+
+    </li>
+    <% }) %>
+    
   </ul>
 
   </main>
