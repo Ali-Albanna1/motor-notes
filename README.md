@@ -1,4 +1,4 @@
-# MotoNotes
+# MotorNotes
 
 MotorNotes is a full-stack web application that allows users to create, read, update, and delete posts reviewing vehicles across the automotive world, including cars, bikes, and other motor vehicles.  
 Users can register, sign in, create posts with images, and interact by adding and managing comments.
