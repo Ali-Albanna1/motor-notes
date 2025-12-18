@@ -13,8 +13,7 @@ router.get('/', async (req,res) => {
          
         const posts = await Post.find({}).populate('author')
 
-        console.log(posts)
-
+        
         res.render('posts/index.ejs', {posts})
 
     }

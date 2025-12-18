@@ -1,89 +1,190 @@
-<h1>
-  <span class="headline">New Project</span>
-  <span class="subhead">Setup</span>
-</h1>
+# MotoNotes
 
-## Setup
+MotorNotes is a full-stack web application that allows users to create, read, update, and delete posts reviewing vehicles across the automotive world, including cars, bikes, and other motor vehicles.  
+Users can register, sign in, create posts with images, and interact by adding and managing comments.
 
-Open your Terminal application and navigate to your projects directory:
+This project was built to demonstrate full CRUD functionality, authentication, authorization, and database relationships using Node.js, Express, MongoDB, and EJS.
 
-## Cloning the Auth boilerplate
+---
 
-This template uses the [`MEN Stack Auth Template`](https://git.generalassemb.ly/modular-curriculum-all-courses/men-stack-session-auth-template) as starter code. Doing so allows us to have a connection established to our MongoDB Atlas, add functioning auth for our user model, and install some of the packages we will need for our app build.
+## 🚗 Features
 
-Navigate to the [MEN Stack Auth Template](https://github.com/SEB-11-BH/MEN-AUTH-TEMPLATE.git) and clone the repository to your machine and rename the folder to your desired project name by running the following command in your terminal.
+- User authentication (Sign Up / Sign In / Sign Out)
+- Full CRUD for posts
+- Image support for posts (via image URL)
+- Comment system with ownership control
+- Authorization (only owners can edit/delete their content)
+- Responsive UI using Milligram CSS
 
-**Be sure to replace `<YOUR-PROJECT-NAME>` with your desired project name!**:
 
-```bash
-git clone https://github.com/SEB-11-BH/MEN-AUTH-TEMPLATE.git <YOUR-PROJECT-NAME>
+---
+
+## Technologies Used
+
+- **Node.js** – JavaScript runtime  
+ 
+
+- **Express.js** – Web framework  
+  
+
+- **MongoDB & Mongoose** – 
+
+- **EJS** – Server-side templating  
+  
+
+- **Express Session & Connect-Mongo** – Authentication sessions  
+  https://www.npmjs.com/package/express-session  
+  https://www.npmjs.com/package/connect-mongo
+
+- **Milligram CSS** – Minimal CSS framework  
+  https://milligram.io/
+
+---
+
+## Project Structure
+```
+MOTOR-NOTES/
+│
+├── config/
+│ └── database.js
+│
+├── controllers/
+│ ├── auth.js
+│ └── posts.js
+│
+├── middleware/
+│ ├── is-signed-in.js
+│ └── pass-user-to-view.js
+│
+├── models/
+│ ├── user.js
+│ └── post.js
+│
+├── public/
+| └── screenshots/
+|   ├── homepage.png
+|   ├── all-posts.png
+|   ├── add-post.png
+|   └── post-page1.png
+|   └── post-page2.png
+│ └── stylesheets/
+│ ├── milligram.min.css
+│ └── style.css
+│
+├── views/
+│ ├── auth/
+│ ├── posts/
+│ └── partials/
+│
+├── server.js
+├── package.json
+└── README.md
+
 ```
 
-Note by adding the `open-house` argument we're cloning the specified repo into a directory called `open-house` on our machines.
+## Data Models
 
-Next, `cd` into your renamed directory:
+### User
+- username
+- password (hashed)
+- session-based authentication
 
-**Be sure to replace `<YOUR-PROJECT-NAME>` with your desired project name!**:
+### Post
+- title
+- image URL
+- content
+- model
+- brand
+- year
+- author (reference to User)
+- embedded comments
 
-```bash
-cd <YOUR-PROJECT-NAME>
-```
+### Comment (Embedded)
+- text
+- author (reference to User)
+- timestamps
 
-Finally, remove the existing `.git` information from this template:
+MongoDB automatically generates unique Ids for all documents.
 
-```bash
-rm -rf .git
-```
+---
 
-> Removing the `.git` info is important as this is just a starter template provided by GA. You do not need the existing git history for this project.
+## 🔐 Authentication & Authorization
 
-## GitHub setup
+-User authentication is implemented using a session-based approach with Express Session and MongoDB.
 
-To add this project to GitHub, initialize a new Git repository:
+-An authentication template provided during coursework was used as a starting point and then integrated, customized, and extended to fit the MotoNotes application.
 
-```bash
-git init
-git add .
-git commit -m "init commit"
-```
+-Authorization rules ensure:
 
-Make a new repository on [GitHub](https://github.com/) for your project.
+-Only authenticated users can access posts
 
-Link your local project to your remote GitHub repo:
+-Only post owners can edit or delete their posts
 
-- use the second set of commands that appear on the empty repo to connect your local project to GitHub.
+-Only comment owners or post owners can delete comments
 
-> 🚨 Do not copy the above command. It will not work. Your GitHub username will replace `<github-username>` (including the `<` and `>`) in the URL above.
+---
 
-Open the project's folder in your code editor:
+## 🎨 Styling & UI
 
-```bash
-code .
-```
+- Milligram CSS is used for base styling and layout
+- Custom CSS overrides are applied for branding and colors
+- Flexbox is used for navigation layout
+- Clean, bright UI with consistent header and footer
 
-## Install dependencies
+Milligram documentation:  
+https://milligram.io/
 
-Next, you will want to install all of the packages listed in `package.json`
+---
 
-```bash
-npm i
-```
+## How to Run Locally
 
-## Create your .env
+1. Clone the repository
 
-Lastly, we want to create `MONGODB_URI` and `SESSION_SECRET` to hold values used in our auth logic.  `MONGODB_URI` will connect to your MongoDB Atlas connection string so you will need to establish one for this application.  `SESSION_SECRET` will aid in your auth session logic.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+Create a .env file:
 
-Add a `.env` file to your application and add the following secret keys to your application:
+env
+Copy code
+MONGODB_URI=your_mongodb_connection_string
+SESSION_SECRET=your_secret_key
 
-```text
-MONGODB_URI=
-SESSION_SECRET=
-```
-
-Start the server and you are ready for launch.
-
-```bash
+3. Start the server:
+ ```bash
 npm run dev
 ```
+4. Open browser at:
+http://localhost:3000
 
-Happy Coding!
+## 📸 Screenshots
+
+
+### Home page:
+![Home page Image](./public/screenshots/homepage.png)
+
+### All posts page
+![All posts page Image](./public/screenshots/all-posts.png)
+
+### Add post form
+![add post form Image](./public/screenshots/add-post.png)
+
+### Post details with comments
+![post show page 1 Image](./public/screenshots/post-page1.png)
+
+![post show page 2 Image](./public/screenshots/post-page2.png)
+
+
+## Future Improvements
+- Image upload instead of image URLs
+
+- Categories for vehicle types
+
+- Search and filter posts
+
+- User profiles
+
+- Pagination for posts
+
+- pop-up messages
