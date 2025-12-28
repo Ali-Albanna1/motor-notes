@@ -33,11 +33,11 @@ This project was built to demonstrate full CRUD functionality, authentication, a
   
 
 - **Express Session & Connect-Mongo** – Authentication sessions  
-  https://www.npmjs.com/package/express-session  
-  https://www.npmjs.com/package/connect-mongo
+ [Express Link](https://www.npmjs.com/package/express-session).  
+  [mongo connect Link](https://www.npmjs.com/package/connect-mongo).
 
 - **Milligram CSS** – Minimal CSS framework  
-  https://milligram.io/
+  [Milligram Css Link](https://milligram.io/).
 
 ---
 
@@ -130,9 +130,6 @@ MongoDB automatically generates unique Ids for all documents.
 - Custom CSS overrides are applied for branding and colors
 - Flexbox is used for navigation layout
 - Clean, bright UI with consistent header and footer
-
-Milligram documentation:  
-https://milligram.io/
 
 ---
 

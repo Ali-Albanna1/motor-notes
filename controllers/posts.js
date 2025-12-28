@@ -4,6 +4,9 @@ const router = express.Router();
 const Post = require('../models/post');
 const User = require('../models/user');
 
+//middleware
+const isPostAuthor = require('../middleware/is-post-author')
+
 
 
 //read
@@ -69,11 +72,11 @@ router.get('/:id', async (req,res) => {
 });
 
 // Edit/ Update
-
-router.get('/:id/edit', async (req,res)=>{
+ 
+router.get('/:id/edit', isPostAuthor, async (req,res)=>{
 
     try{
-
+       
         const post = await Post.findById(req.params.id)
 
         res.render('posts/edit.ejs',{post})
@@ -86,33 +89,20 @@ router.get('/:id/edit', async (req,res)=>{
 
 })
 
-router.put('/:id', async (req,res)=>{
+router.put('/:id', isPostAuthor, async (req,res)=>{
 
     try{
         
         const post = await Post.findById(req.params.id)
-
-        isAuthor = post.author.equals(req.session.user._id)
-
-        if(isAuthor){
-                
+       
             await post.updateOne(req.body)
 
             res.redirect(`/posts/${req.params.id}`)
 
-        }
-
-        else{
-
-              res.redirect(`/posts/${req.params.id}`)
-
-
-        }
-
     }
 
     catch(err){
-         res.redirect('')
+         res.redirect(`/posts/${req.params.id}`)
          console.error(err)
     }
 
@@ -154,31 +144,25 @@ catch(err){
 
 //Delete
 
-router.delete('/:id', async (req,res) =>{
+router.delete('/:id',isPostAuthor, async (req,res) =>{
 
 
     try{
         
         const post = await Post.findById(req.params.id)
-        
-        isAuthor = post.author.equals(req.session.user._id)
-
-        if(isAuthor){
+    
 
              await post.deleteOne(req.body)
 
              res.redirect('/posts')
-        }
-        else{
-               
-            throw new Error(`permission denied to ${req.session.user.username}`)
-
-        }
-
+        
+       
     }
 
      catch(err){
-         res.redirect('')
+    
+        throw new Error(`permission denied to ${req.session.user.username}`)
+
          console.error(err)
     }
 
